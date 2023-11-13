@@ -12,6 +12,7 @@ const StorySchema = new Schema({
     readTime: { type: Number, required },
     recomendedAge: { type: Number, required },
     rating: { type: Number},
+    imageUrl: { type: String},
 }, { timestamps })
 
 const Story = model("Story", StorySchema)

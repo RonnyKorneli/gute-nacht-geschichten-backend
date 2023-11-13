@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import { connectDb } from "./lib/db.js";
 
 
+
+
 const app = express()
 dotenv.config();
 app.use(cors());
@@ -14,13 +16,11 @@ connectDb();
 //const port = 2000
 
 //routes
-app.use('/api/stories', storiesRouter);
-
 app.get('/', (req, res) => {
   res.send('Backend!')
 })
 
-
+app.use('/api/stories', storiesRouter);
 
 const port = process.env.PORT || 2000;
 app.listen(port, () => {
