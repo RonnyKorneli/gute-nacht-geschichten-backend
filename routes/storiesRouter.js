@@ -16,7 +16,7 @@ storiesRouter.post('/create', async (req, res) => {
     }
 })
 
-//Generate signed url
+//Generate signed url for frontend to upload image to s3
 storiesRouter.get('/s3Url', async (req, res) => {
     console.log("s3Url");
     try {
@@ -28,6 +28,16 @@ storiesRouter.get('/s3Url', async (req, res) => {
       }
 })
 
+storiesRouter.get('/get-all-stories', async (req, res) => {
+    console.log("get stories")
+    try {
+        const stories = await Story.find()
+        res.json(stories)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
 
 
 
