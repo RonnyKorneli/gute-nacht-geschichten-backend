@@ -2,6 +2,9 @@ import express from 'express'
 import Story from '../models/Stories.js'
 import GenerateUploadUrl from '../s3.js'
 
+//TASKS
+//1.Make Logic to give Images/Stories a priority
+
 
 const storiesRouter = express.Router();
 

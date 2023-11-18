@@ -13,6 +13,7 @@ const StorySchema = new Schema({
     recomendedAge: { type: Number, required },
     rating: { type: Number},
     imageUrl: { type: String},
+    priority: { type: Number },
 }, { timestamps })
 
 const Story = model("Story", StorySchema)
