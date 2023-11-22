@@ -42,6 +42,17 @@ storiesRouter.get('/get-all-stories', async (req, res) => {
     }
 })
 
+storiesRouter.get('/get-story/:id', async (req, res) => {
+    console.log("get story")
+    try {
+        const story = await Story.findById(req.params.id)
+        res.json(story)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
 
 
 export default storiesRouter
