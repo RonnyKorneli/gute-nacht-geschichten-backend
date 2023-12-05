@@ -53,6 +53,17 @@ storiesRouter.get('/get-story/:id', async (req, res) => {
     }
 })
 
+storiesRouter.patch('/update-one-story/:id', async (req, res) => {
+    try {
+        console.log(req.body.body, "Req Bodey story")
+        const updatedStory = await Story.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        res.json(updatedStory)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
 
 
 export default storiesRouter

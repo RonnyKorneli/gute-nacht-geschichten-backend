@@ -8,13 +8,25 @@ const timestamps = true
 const StorySchema = new Schema({
     title: { type: String, required },
     author:{ type: String, required },
+    introduction: { type: String, required },
     body: { type: String, required },
     readTime: { type: Number, required },
     recomendedAge: { type: Number, required },
     rating: { type: Number},
-    imageUrl: { type: String},
+    imageUrl: { type: String, required},
+    secondImageUrl: { type: String},
+    thirdImageUrl: { type: String},
+    youtubeUrl: { type: String},
     priority: { type: Number },
 }, { timestamps })
 
 const Story = model("Story", StorySchema)
 export default Story
+
+
+
+
+
+
+
+
