@@ -121,6 +121,7 @@ storiesRouter.patch('/update-body/:id', async (req, res) => {
         doc.body = req.body.body;
         await doc.save();
         res.json(doc);
+        console.log("inside update body")
         
     } catch (error) {
         console.log(error)
@@ -128,6 +129,21 @@ storiesRouter.patch('/update-body/:id', async (req, res) => {
     }
 })
 
+storiesRouter.patch('/update-intro/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.introduction = req.body.introduction;
+        await doc.save();
+        res.json(doc);
+        console.log("inside update intro", doc)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
 
 
 export default storiesRouter
