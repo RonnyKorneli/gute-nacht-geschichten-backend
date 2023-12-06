@@ -53,11 +53,75 @@ storiesRouter.get('/get-story/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-one-story/:id', async (req, res) => {
+storiesRouter.patch('/update-title/:id', async (req, res) => {
     try {
-        console.log(req.body.body, "Req Bodey story")
-        const updatedStory = await Story.findByIdAndUpdate(req.params.id, req.body, { new: true })
-        res.json(updatedStory)
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.title = req.body.title;
+        await doc.save();
+        res.json(doc);
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
+storiesRouter.patch('/update-author/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.author = req.body.author;
+        await doc.save();
+        res.json(doc);
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
+storiesRouter.patch('/update-read-time/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.readTime = req.body.readTime;
+        await doc.save();
+        res.json(doc);
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
+storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.recomendedAge = req.body.recomendedAge;
+        await doc.save();
+        res.json(doc);
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
+
+storiesRouter.patch('/update-body/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.body = req.body.body;
+        await doc.save();
+        res.json(doc);
+        
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: error.message })
