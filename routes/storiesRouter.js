@@ -145,5 +145,20 @@ storiesRouter.patch('/update-intro/:id', async (req, res) => {
     }
 })
 
+storiesRouter.patch('/update-image-url/:id', async (req, res) => {
+    try {
+
+        const id = req.params.id
+        const doc = await Story.findById(id);
+        doc.imageUrl = req.body.imageUrl;
+        await doc.save();
+        res.json(doc);
+        console.log("inside image url update", doc)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
+})
 
 export default storiesRouter
