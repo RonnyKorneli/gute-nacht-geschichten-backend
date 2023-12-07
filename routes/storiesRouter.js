@@ -9,7 +9,6 @@ import GenerateUploadUrl from '../s3.js'
 const storiesRouter = express.Router();
 
 storiesRouter.post('/create', async (req, res) => {
-    console.log(req.body, "req.body")
      try {
         const story = await Story.create(req.body)
         res.json(story)
@@ -21,7 +20,6 @@ storiesRouter.post('/create', async (req, res) => {
 
 //Generate signed url for frontend to upload image to s3
 storiesRouter.get('/s3Url', async (req, res) => {
-    console.log("s3Url");
     try {
         const url = await GenerateUploadUrl();
         res.send({ url });
@@ -32,7 +30,6 @@ storiesRouter.get('/s3Url', async (req, res) => {
 })
 
 storiesRouter.get('/get-all-stories', async (req, res) => {
-    console.log("get stories")
     try {
         const stories = await Story.find()
         res.json(stories)
@@ -43,7 +40,6 @@ storiesRouter.get('/get-all-stories', async (req, res) => {
 })
 
 storiesRouter.get('/get-story/:id', async (req, res) => {
-    console.log("get story")
     try {
         const story = await Story.findById(req.params.id)
         res.json(story)
@@ -55,7 +51,6 @@ storiesRouter.get('/get-story/:id', async (req, res) => {
 
 storiesRouter.patch('/update-title/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.title = req.body.title;
@@ -70,7 +65,6 @@ storiesRouter.patch('/update-title/:id', async (req, res) => {
 
 storiesRouter.patch('/update-author/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.author = req.body.author;
@@ -85,7 +79,6 @@ storiesRouter.patch('/update-author/:id', async (req, res) => {
 
 storiesRouter.patch('/update-read-time/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.readTime = req.body.readTime;
@@ -100,7 +93,6 @@ storiesRouter.patch('/update-read-time/:id', async (req, res) => {
 
 storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.recomendedAge = req.body.recomendedAge;
