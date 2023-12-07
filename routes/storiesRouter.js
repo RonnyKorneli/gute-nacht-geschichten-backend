@@ -107,7 +107,6 @@ storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
 
 storiesRouter.patch('/update-body/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.body = req.body.body;
@@ -122,7 +121,6 @@ storiesRouter.patch('/update-body/:id', async (req, res) => {
 
 storiesRouter.patch('/update-intro/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.introduction = req.body.introduction;
@@ -137,7 +135,6 @@ storiesRouter.patch('/update-intro/:id', async (req, res) => {
 
 storiesRouter.patch('/update-image-url/:id', async (req, res) => {
     try {
-
         const id = req.params.id
         const doc = await Story.findById(id);
         doc.imageUrl = req.body.imageUrl;
