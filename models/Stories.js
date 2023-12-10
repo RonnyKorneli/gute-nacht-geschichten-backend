@@ -9,7 +9,11 @@ const StorySchema = new Schema({
     title: { type: String, required },
     author:{ type: String, required },
     introduction: { type: String, required },
-    body: { type: String, required },
+    body: { 
+        mainStoryPartOne:{ type: String, required },
+        mainStoryPartTwo:{ type: String, required },
+        mainStoryPartThree:{ type: String, required },
+     },
     readTime: { type: Number, required },
     recomendedAge: { type: Number, required },
     rating: { type: Number},

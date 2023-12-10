@@ -109,7 +109,9 @@ storiesRouter.patch('/update-body/:id', async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
-        doc.body = req.body.body;
+        doc.body.mainStoryPartOne = req.body.body.mainStoryPartOne;
+        doc.body.mainStoryPartTwo = req.body.body.mainStoryPartTwo;
+        doc.body.mainStoryPartThree = req.body.body.mainStoryPartThree;
         await doc.save();
         res.json(doc);
 
