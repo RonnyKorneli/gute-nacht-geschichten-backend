@@ -9,6 +9,7 @@ import GenerateUploadUrl from '../s3.js'
 const storiesRouter = express.Router();
 
 storiesRouter.post('/create', async (req, res) => {
+    console.log(req.body, 'req.body inisde theh createtetetetet')
      try {
         const story = await Story.create(req.body)
         res.json(story)
