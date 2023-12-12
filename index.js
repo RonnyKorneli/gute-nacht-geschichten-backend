@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
   res.send('Backend!')
 })
 
-app.use('/api/stories',checkToken, storiesRouter);
+//add checkToken middleware to storiesRouter
+app.use('/api/stories', storiesRouter);
 app.use('/api/user',  userRouter);
 
 const port = process.env.PORT || 2000;
