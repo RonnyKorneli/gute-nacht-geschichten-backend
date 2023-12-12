@@ -43,6 +43,7 @@ storiesRouter.get('/get-all-stories', async (req, res) => {
 storiesRouter.get('/get-story/:id', async (req, res) => {
     try {
         const story = await Story.findById(req.params.id)
+        console.log(story, 'story')
         res.json(story)
     } catch (error) {
         console.log(error)

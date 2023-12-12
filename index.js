@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import storiesRouter from './routes/storiesRouter.js';
+import userRouter from './routes/userRoute.js';
 import dotenv from 'dotenv';
+import checkToken from './middleware/checkToken.js';
 import { connectDb } from "./lib/db.js";
 
 
@@ -20,7 +22,8 @@ app.get('/', (req, res) => {
   res.send('Backend!')
 })
 
-app.use('/api/stories', storiesRouter);
+app.use('/api/stories',checkToken, storiesRouter);
+app.use('/api/user',  userRouter);
 
 const port = process.env.PORT || 2000;
 app.listen(port, () => {
