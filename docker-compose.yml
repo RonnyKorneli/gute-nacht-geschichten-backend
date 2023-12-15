@@ -4,7 +4,7 @@ services:
     build:
       context: .
     ports:
-      - "0.0.0.0:3000:2000"
+      - "0.0.0.0:2000:2000"
     env_file:
       - .env
     depends_on:
