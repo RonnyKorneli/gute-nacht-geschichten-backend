@@ -19,7 +19,7 @@ connectDb();
 
 //routes
 app.get('/', (req, res) => {
-  res.send('Backend!')
+  res.send('Backend!!')
 })
 
 //add checkToken middleware to storiesRouter

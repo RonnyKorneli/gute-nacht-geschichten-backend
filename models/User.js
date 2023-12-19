@@ -16,7 +16,7 @@ const LoginSchema = new Schema({
 
 const userSchema = new Schema({
     loginInfo:{type:LoginSchema},
-    role:{type:String, enum:["host", "user"]},
+    role:{type:String, enum:["admin", "user"]},
     firstName:{type:String},
 }, { 
     timestamps,

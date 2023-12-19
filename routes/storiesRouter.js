@@ -1,6 +1,8 @@
 import express from 'express'
 import Story from '../models/Stories.js'
 import GenerateUploadUrl from '../s3.js'
+import jwt from 'jsonwebtoken'
+import verifyToken from '../middleware/checkToken.js'
 
 //TASKS
 //1.Make Logic to give Images/Stories a priority
@@ -8,8 +10,8 @@ import GenerateUploadUrl from '../s3.js'
 
 const storiesRouter = express.Router();
 
-storiesRouter.post('/create', async (req, res) => {
-    console.log(req.body, 'req.body inisde theh createtetetetet')
+storiesRouter.post('/create',verifyToken, async (req, res) => {
+   
      try {
         const story = await Story.create(req.body)
         res.json(story)
@@ -20,7 +22,7 @@ storiesRouter.post('/create', async (req, res) => {
 })
 
 //Generate signed url for frontend to upload image to s3
-storiesRouter.get('/s3Url', async (req, res) => {
+storiesRouter.get('/s3Url',verifyToken, async (req, res) => {
     try {
         const url = await GenerateUploadUrl();
         res.send({ url });
@@ -31,6 +33,7 @@ storiesRouter.get('/s3Url', async (req, res) => {
 })
 
 storiesRouter.get('/get-all-stories', async (req, res) => {
+    console.log('get all stories')
     try {
         const stories = await Story.find()
         res.json(stories)
@@ -79,7 +82,7 @@ storiesRouter.patch('/update-author/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-read-time/:id', async (req, res) => {
+storiesRouter.patch('/update-read-time/:id', verifyToken,  async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
@@ -93,7 +96,7 @@ storiesRouter.patch('/update-read-time/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
+storiesRouter.patch('/update-recomended-age/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
@@ -107,7 +110,7 @@ storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-body/:id', async (req, res) => {
+storiesRouter.patch('/update-body/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
@@ -123,7 +126,7 @@ storiesRouter.patch('/update-body/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-intro/:id', async (req, res) => {
+storiesRouter.patch('/update-intro/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
@@ -137,7 +140,7 @@ storiesRouter.patch('/update-intro/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-image-url/:id', async (req, res) => {
+storiesRouter.patch('/update-image-url/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
