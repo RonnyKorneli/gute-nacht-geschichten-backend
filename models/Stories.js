@@ -17,7 +17,7 @@ const StorySchema = new Schema({
     readTime: { type: Number, required },
     recomendedAge: { type: Number, required },
     rating: { type: Number},
-    imageUrl: { type: String, required},
+    imageUrl: [{ type: String, required: true }],
     secondImageUrl: { type: String},
     thirdImageUrl: { type: String},
     youtubeUrl: { type: String},

@@ -10,7 +10,7 @@ import verifyToken from '../middleware/checkToken.js'
 
 const storiesRouter = express.Router();
 
-storiesRouter.post('/create',verifyToken, async (req, res) => {
+storiesRouter.post('/create', async (req, res) => {
    
      try {
         const story = await Story.create(req.body)
@@ -22,7 +22,7 @@ storiesRouter.post('/create',verifyToken, async (req, res) => {
 })
 
 //Generate signed url for frontend to upload image to s3
-storiesRouter.get('/s3Url',verifyToken, async (req, res) => {
+storiesRouter.get('/s3Url', async (req, res) => {
     try {
         const url = await GenerateUploadUrl();
         res.send({ url });
@@ -82,7 +82,7 @@ storiesRouter.patch('/update-author/:id', async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-read-time/:id', verifyToken,  async (req, res) => {
+storiesRouter.patch('/update-read-time/:id',  async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);
@@ -96,7 +96,7 @@ storiesRouter.patch('/update-read-time/:id', verifyToken,  async (req, res) => {
     }
 })
 
-storiesRouter.patch('/update-recomended-age/:id', verifyToken, async (req, res) => {
+storiesRouter.patch('/update-recomended-age/:id', async (req, res) => {
     try {
         const id = req.params.id
         const doc = await Story.findById(id);

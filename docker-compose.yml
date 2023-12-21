@@ -1,25 +1,29 @@
 version: '3'
+
 services:
-  app:
-    build:
-      context: .
+  backend:
+    image: bedtime-stories-backend
+    container_name: express-backend-container
     ports:
-      - "0.0.0.0:2000:2000"
-    env_file:
-      - .env
+      - "2000:2000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/your-database-name
+      - AWS_ACCESS_KEY_ID=process.env.AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=process.env.AWS_SECRET_ACCESS_KEY
+      - S3_BUCKET_NAME=gute-nacht-geschichte-images
     depends_on:
       - mongo
-    links:
-      - mongo
-    networks:
-      - my_network
 
   mongo:
-    image: mongo
+    image: mongo:latest
+    container_name: mongo-container
     ports:
       - "27017:27017"
-    networks:
-      - my_network
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=process.env.MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=process.env.DB_PASS
+      - MONGO_INITDB_DATABASE=process.env.DB_NAME
 
 networks:
-  my_network:
+  default:
+    driver: bridge
