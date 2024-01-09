@@ -2,7 +2,9 @@ version: '3'
 
 services:
   backend:
-    image: bedtime-stories-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: express-backend-container
     ports:
       - "2000:2000"
